@@ -1,24 +1,40 @@
 #include <stdio.h>
+#include <ctype.h>
+
+#define MAXHIST 15
+#define MAXCHAR 128
 
 int main()
 {
-	int c, i, nwhite, nother;
-	int ndigit[10];
+	int c, i, len, maxvalue;
+	int cc[MAXCHAR];
 
-	nwhite = nother = 0;
-	for (i = 0; i < 10; ++i)
-		ndigit[i] = 0;
+	for (i = 0; i < MAXCHAR; ++i)
+		cc[i] = 0;
+	whille((c = getchar()) != EOF)
+		if (c < MAXCHAR)
+			++cc[c];
+	maxvalue = 0;
+	for (i = 1; i < MAXCHAR; ++i)
+		if (cc[i] > maxvalue)
+			maxvalue = cc[i];
 
-	while ((c = getchar()) != EOF)
-		if (c >= '0' && c <= '9')
-			++ndigit[c - '0'];
-		else if (c == ' ' || c == '\n' || c == '\t')
-			++nwhite;
+	for (i = 1; i < MAXCHAR; ++i) {
+		if (isprint(i))
+			printf("%5d - %c - %5d : ", i, i, cc[i]);
 		else
-			++nother;
-
-	printf("digits =");
-	for (i = 0; i < 10; ++i)
-		printf(" %d", ndigit[i]);
-	printf(", white space = %d, others = %d\n", nwhite, nother);
+			printf("%5d -    - %5d : ", i, cc[i]);
+		if (cc[i] > 0) {
+			if ((len = cc[i] * MAXHIST / maxvalue) <= 0)
+				len = 1;
+		}
+		else
+			len = 0;
+		while (len > 0) {
+			putchar('*');
+			--len;
+		}
+		putchar('\n');
+	}
+		system("pause");
 }
