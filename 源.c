@@ -1,18 +1,26 @@
 #include <stdio.h>
 
+#define IN 1
+#define OUT 0
+
 int main()
 {
-	int fahr, celsius, lower, upper, step;
+	int c,state;
 
-	lower = 0;
-	upper = 300;
-	step = 1;
-
-	fahr = lower;
-	while (fahr <= upper) {
-		celsius = 5 * (fahr - 32) / 9;
-		printf("%d\t%d\n", fahr, celsius);
-		fahr = fahr + step;
+	state = OUT;
+	while ((c = getchar()) != EOF) {
+		if (c == ' ' || c == '\n' || c == '\t') {
+			if (state == IN) {
+				putchar('\n');
+				state = OUT;
+			}
+		}
+		else if (state == OUT) {
+			state = IN;
+			putchar(c);
+		}
+		else
+			putchar(c);
 	}
-	system("pause");
+		system("pause");
 }
