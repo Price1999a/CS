@@ -1,17 +1,13 @@
 #include <stdio.h>
 
-#define LOWER 0
-#define UPPER 300
-#define STEP 20
-
 int main()
 {
-	int fahr;
+	int c;
 
-	for (fahr = UPPER;
-		fahr >= LOWER;
-		fahr = fahr - 20)
-		printf("%3d\t%6.1f\n", fahr, (5.0 / 9.0)*(fahr - 32));
+	c = getchar();
+	while (c != EOF) {
+		putchar(c);
+		c = getchar();
 		system("pause");
-		return 0;
+	}
 }
