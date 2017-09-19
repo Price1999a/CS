@@ -1,26 +1,24 @@
 #include <stdio.h>
 
-#define IN 1
-#define OUT 0
-
 int main()
 {
-	int c,state;
+	int c, i, nwhite, nother;
+	int ndigit[10];
 
-	state = OUT;
-	while ((c = getchar()) != EOF) {
-		if (c == ' ' || c == '\n' || c == '\t') {
-			if (state == IN) {
-				putchar('\n');
-				state = OUT;
-			}
-		}
-		else if (state == OUT) {
-			state = IN;
-			putchar(c);
-		}
+	nwhite = nother = 0;
+	for (i = 0; i < 10; ++i)
+		ndigit[i] = 0;
+
+	while ((c = getchar()) != EOF)
+		if (c >= '0' && c <= '9')
+			++ndigit[c - '0'];
+		else if (c == ' ' || c == '\n' || c == '\t')
+			++nwhite;
 		else
-			putchar(c);
-	}
-		system("pause");
+			++nother;
+
+	printf("digits =");
+	for (i = 0; i < 10; ++i)
+		printf(" %d", ndigit[i]);
+	printf(", white space = %d, others = %d\n", nwhite, nother);
 }
