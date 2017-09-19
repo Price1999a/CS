@@ -1,26 +1,12 @@
 #include <stdio.h>
 
-#define IN 1
-#define OUT 0
-
 int main()
 {
-	int c,state;
+	int fahr;
 
-	state = OUT;
-	while ((c = getchar()) != EOF) {
-		if (c == ' ' || c == '\n' || c == '\t') {
-			if (state == IN) {
-				putchar('\n');
-				state = OUT;
-			}
-		}
-		else if (state == OUT) {
-			state = IN;
-			putchar(c);
-		}
-		else
-			putchar(c);
-	}
+	for (fahr = 300;
+		fahr >= 0;
+		fahr = fahr - 20)
+		printf("%3d\t%6.1f\n", fahr, (5.0 / 9.0)*(fahr - 32));
 		system("pause");
 }
