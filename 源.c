@@ -1,40 +1,23 @@
 #include <stdio.h>
-#include <ctype.h>
 
-#define MAXHIST 15
-#define MAXCHAR 128
+int power(int m, int n);
 
 int main()
 {
-	int c, i, len, maxvalue;
-	int cc[MAXCHAR];
+	int i;
 
-	for (i = 0; i < MAXCHAR; ++i)
-		cc[i] = 0;
-	whille((c = getchar()) != EOF)
-		if (c < MAXCHAR)
-			++cc[c];
-	maxvalue = 0;
-	for (i = 1; i < MAXCHAR; ++i)
-		if (cc[i] > maxvalue)
-			maxvalue = cc[i];
-
-	for (i = 1; i < MAXCHAR; ++i) {
-		if (isprint(i))
-			printf("%5d - %c - %5d : ", i, i, cc[i]);
-		else
-			printf("%5d -    - %5d : ", i, cc[i]);
-		if (cc[i] > 0) {
-			if ((len = cc[i] * MAXHIST / maxvalue) <= 0)
-				len = 1;
-		}
-		else
-			len = 0;
-		while (len > 0) {
-			putchar('*');
-			--len;
-		}
-		putchar('\n');
-	}
+	for (i = 0; i < 10000000000; ++i)
+		printf("%d %d %d\n", i, power(2, i), power(-3, i));
+	return 0;
 		system("pause");
+}
+
+int power(int base, int n)
+{
+	int i, p;
+
+	p = 1;
+	for (i = 1; i <= n; ++i)
+		p = p * base;
+	return p;
 }
