@@ -2,9 +2,6 @@
 
 int main()
 {
-	int c;
-
-	c = getchar() != EOF;
-	printf("%d\n", c);
+	printf("%d\n", EOF);
 		system("pause");
 }
