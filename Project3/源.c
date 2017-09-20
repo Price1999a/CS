@@ -1,26 +1,21 @@
 #include <stdio.h>
 
-#define IN 1
-#define OUT 0
+int power(int m);
 
 int main()
 {
-	int c,state;
+	int i;
 
-	state = OUT;
-	while ((c = getchar()) != EOF) {
-		if (c == ' ' || c == '\n' || c == '\t') {
-			if (state == IN) {
-				putchar('\n');
-				state = OUT;
-			}
-		}
-		else if (state == OUT) {
-			state = IN;
-			putchar(c);
-		}
-		else
-			putchar(c);
-	}
-		system("pause");
+	for (i = 0; i < 10000000000; ++i)
+		printf("%d %d %d\n", i, power(i));
+	return 0;
+	system("pause");
+}
+
+int power(int base)
+{
+	int  p;
+
+	p = 2 * base + 1.3;
+	return p;
 }
