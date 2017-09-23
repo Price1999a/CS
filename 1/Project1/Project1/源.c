@@ -1,21 +1,47 @@
 #include <stdio.h>
+#define MAXLINE 1000
 
-int power(int m);
+int getline(char line[], int manline);
+void copy(char to[], char from[]);
 
 int main()
 {
-	int i;
+	int len;
+	int max;
+	char line[MAXLINE];
+	char longest[MAXLINE];
 
-	for (i = 0; i < 100000; ++i)
-		printf("%d %d\n", i, power(i));
-	return 0;
+	max = 0;
+	while ((len = getline(line,MAXLINE)) > 0)
+		if (len > max) {
+			max = len;
+			copy(longest, line);
+		}
+	if (max > 0)
+		printf("%s", longest);
 	system("pause");
+	return 0;
 }
 
-int power(int base)
+int getline(char s[],int lim)
 {
-	int  p;
+	int  c,i;
 
-	p = 2 * base + 100000;
-	return p;
+	for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; ++i)
+		s[i] = c;
+	if (c == '\n') {
+		s[i] = c;
+		++i;
+	}
+	s[i] = '\0';
+	return i;
+}
+
+void copy(char to[], char from[])
+{
+	int i;
+
+	i = 0;
+	while ((to[i] = from[i]) != '\0')
+		++i;
 }
